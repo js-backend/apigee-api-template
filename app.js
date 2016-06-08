@@ -7,10 +7,19 @@ var app = express();
 module.exports = app; // for testing
 
 // initialize a127 framework
+
 a127.init(function(config) {
 
   // include a127 middleware
   app.use(a127.middleware(config));
+
+  // adding ui options
+  // install swagger ui https://github.com/apigee-127/magic/issues/6
+  var swaggerTools = config['a127.magic'].swaggerTools;
+  app.use(swaggerTools.swaggerUi({
+    swaggerUi: config.ui.swaggerUi,
+    apiDocs: config.ui.apiDocs
+  }));
 
   // error handler to emit errors as a json string
   app.use(function(err, req, res, next) {
@@ -32,7 +41,11 @@ a127.init(function(config) {
   var ip = process.env.IP || 'localhost';
   var port = process.env.PORT || 10010;
   // begin listening for client requests
-  app.listen(port, ip);
+  //  app.listen(port, ip);
+  app.listen(port, function() {
+    console.log('Express server listening on port: ' + port);
+    return console.log('env = ' + app.get('env') + '\n__dirname = ' + __dirname + '\nprocess.cwd = ' + process.cwd());
+  });
 
   console.log('try this:\ncurl http://' + ip + ':' + port + '/hello?name=Scott');
 });
