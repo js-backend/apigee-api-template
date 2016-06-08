@@ -34,5 +34,8 @@
     "name": "hello-world",
     "basePath": "/hello-world",
     "main": "app.js"
+  },
+  "engines": {
+    "node": "4.2.2"
   }
 }
