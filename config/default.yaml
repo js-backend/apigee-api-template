@@ -6,4 +6,7 @@ ui:
   swaggerUi: '/api/ui'
   apiDocs: '/api/docs'
 
+storage:
+  secret: 'myapidbmongo'
+  database: 'mongodb://wasya:123@ds019123.mlab.com:19123/apigee-api'
 

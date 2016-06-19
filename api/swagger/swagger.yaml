@@ -45,6 +45,26 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /setup:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: hello_world
+    x-a127-apply: {}
+    get:
+      description: Save hardcoded user to storage
+      # used as the method name of the controller
+      operationId: setup
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
 # complex objects have schema definitions
 definitions:
   HelloWorldResponse:

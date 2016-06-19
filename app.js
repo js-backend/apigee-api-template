@@ -4,6 +4,8 @@ var a127 = require('a127-magic');
 var express = require('express');
 var app = express();
 
+var mongoose = require('mongoose');
+
 module.exports = app; // for testing
 
 // initialize a127 framework
@@ -12,6 +14,14 @@ a127.init(function(config) {
 
   // include a127 middleware
   app.use(a127.middleware(config));
+
+  mongoose.connect(config.storage.database, function (err, res) {
+    if (err) {
+      console.log ('ERROR connecting to: ' + config.storage.database + '. ' + err);
+    } else {
+      console.log ('Succeeded connected to: ' + config.storage.database);
+    }
+  });
 
   // adding ui options
   // install swagger ui https://github.com/apigee-127/magic/issues/6

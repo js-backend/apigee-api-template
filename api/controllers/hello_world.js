@@ -25,7 +25,8 @@ var util = require('util');
   we specify that in the exports of this module that 'hello' maps to the function named 'hello'
  */
 module.exports = {
-  hello: hello
+  hello: hello,
+  setup: setup
 };
 
 /*
@@ -41,4 +42,26 @@ function hello(req, res) {
 
   // this sends back a JSON response which is a single string
   res.json(hello);
+}
+
+var User = require('../helpers/models/user'); // get our mongoose model
+
+function setup (req, res) {
+    // create a sample user
+    var newUser = new User({
+        name: 'mazhekin',
+        password: 'test',
+        admin: true
+    });
+
+    // save the sample user
+    newUser.save(function(err) {
+        if (err) throw err;
+
+        console.log('User saved successfully');
+        res.json({
+            success: true,
+            message: 'User saved successfully'
+        });
+    });
 }
