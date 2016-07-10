@@ -6,7 +6,7 @@ info:
 # here host not needed because it initialises in app.js programmatically from
 #host: localhost:10010890898
 #host: localhost:52107
-#host: a127-hello-world.herokuapp.com
+host: a127-hello-world.herokuapp.com
 # basePath prefixes all resource paths 
 basePath: /
 #
