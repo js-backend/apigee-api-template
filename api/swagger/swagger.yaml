@@ -3,8 +3,10 @@ info:
   version: "0.0.1"
   title: Hello World App
 # during dev, should point to your local machine
-#host: localhost:10010
-host: a127-hello-world.herokuapp.com
+# here host not needed because it initialises in app.js programmatically from
+#host: localhost:10010890898
+#host: localhost:52107
+#host: a127-hello-world.herokuapp.com
 # basePath prefixes all resource paths 
 basePath: /
 #
@@ -65,10 +67,50 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-
+  /register:
+    x-swagger-router-controller: users
+    x-a127-apply: {}
+    post:
+      description: Registering new user
+      operationId: register
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: regInfo 
+          in: body
+          description: Registration User Info
+          required: true
+          schema:
+            $ref: '#/definitions/RegInfo'
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      
 # complex objects have schema definitions
 definitions:
   HelloWorldResponse:
     type: string
   ErrorResponse:
     type: string
+  RegInfo:
+    description: RegInfo Object 
+    properties:
+      email:
+        type: string
+        description: user email
+      password:
+        type: string
+        description: user password
+    required:
+      - email
+      - password

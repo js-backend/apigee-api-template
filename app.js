@@ -8,9 +8,18 @@ var mongoose = require('mongoose');
 
 module.exports = app; // for testing
 
+var ip = process.env.IP || 'localhost';
+var port = process.env.PORT || 10010;
+
 // initialize a127 framework
 
 a127.init(function(config) {
+
+  // add config to the request
+  /*app.use(function(req, res, next) {
+    req.config = config;
+    next();
+  });*/
 
   // include a127 middleware
   app.use(a127.middleware(config));
@@ -25,6 +34,7 @@ a127.init(function(config) {
 
   // adding ui options
   // install swagger ui https://github.com/apigee-127/magic/issues/6
+  config['a127.magic'].swaggerObject.host = ip + ':' + port; //!!! this is set host for swagger.yaml
   var swaggerTools = config['a127.magic'].swaggerTools;
   app.use(swaggerTools.swaggerUi({
     swaggerUi: config.ui.swaggerUi,
@@ -48,8 +58,6 @@ a127.init(function(config) {
     res.end(JSON.stringify(err));
   });
 
-  var ip = process.env.IP || 'localhost';
-  var port = process.env.PORT || 10010;
   // begin listening for client requests
   //  app.listen(port, ip);
   app.listen(port, function() {
