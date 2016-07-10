@@ -34,7 +34,10 @@ a127.init(function(config) {
 
   // adding ui options
   // install swagger ui https://github.com/apigee-127/magic/issues/6
-  config['a127.magic'].swaggerObject.host = ip + ':' + port; //!!! this is set host for swagger.yaml
+  if (process.env.NODE_ENV!='production') {
+    config['a127.magic'].swaggerObject.host = ip + ':' + port; //!!! this is set host for swagger.yaml
+  }
+
   var swaggerTools = config['a127.magic'].swaggerTools;
   app.use(swaggerTools.swaggerUi({
     swaggerUi: config.ui.swaggerUi,
