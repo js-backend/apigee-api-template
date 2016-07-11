@@ -78,12 +78,12 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: regInfo 
+        - name: registerInfo 
           in: body
           description: Registration User Info
           required: true
           schema:
-            $ref: '#/definitions/RegInfo'
+            $ref: '#/definitions/RegisterInfo'
       responses:
         "200":
           description: Success
@@ -95,15 +95,54 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-      
+  /login:
+    x-swagger-router-controller: users
+    x-a127-apply: {}
+    post:
+      description: User login
+      operationId: login
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: loginInfo 
+          in: body
+          description: User credentials for login
+          required: true
+          schema:
+            $ref: '#/definitions/LoginInfo'
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
 # complex objects have schema definitions
 definitions:
   HelloWorldResponse:
     type: string
   ErrorResponse:
     type: string
-  RegInfo:
-    description: RegInfo Object 
+  RegisterInfo:
+    description: Object for new user registration data 
+    properties:
+      email:
+        type: string
+        description: user email
+      password:
+        type: string
+        description: user password
+    required:
+      - email
+      - password
+  LoginInfo:
+    description: User credentials for login 
     properties:
       email:
         type: string

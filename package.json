@@ -12,7 +12,6 @@
     "express": "3.x.x",
     "jsonwebtoken": "^7.0.1",
     "membership": "git+https://github.com/js-backend/membership.git",
-    "mongoose": "^4.5.1",
     "swagger-tools": "^0.10.1",
     "volos-analytics-apigee": "",
     "volos-analytics-common": "",
