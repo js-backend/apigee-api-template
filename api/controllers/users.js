@@ -30,7 +30,7 @@ function login(req, res) {
             });
             res.json({token: token, user: result.user, message: result.message});
         } else {
-            res.status(400).json({message: result.message});
+            res.status(422).json({message: result.message});
         }
     });
 }
