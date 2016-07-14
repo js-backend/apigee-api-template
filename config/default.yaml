@@ -7,6 +7,6 @@ ui:
   apiDocs: '/api/docs'
 
 storage:
-  secret: 'myapidbmongo'
+  secret: 'myapidbmongomazhekin'
   database: 'mongodb://wasya:123@ds019123.mlab.com:19123/apigee-api'
 
