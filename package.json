@@ -27,11 +27,13 @@
     "volos-spikearrest-memory": ""
   },
   "devDependencies": {
+    "mocha": "^2.5.3",
     "should": "4.4.x",
     "supertest": "0.15.x"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "node_modules/.bin/mocha"
   },
   "api": {
     "name": "hello-world",
