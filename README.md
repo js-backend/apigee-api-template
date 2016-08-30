@@ -2,9 +2,11 @@
 
 Skeleton project for Apigee-127
 
-heroku 
+heroku
+
 project: a127-hello-world
-host: a127-hello-world.herokuapp.com
+
+host: http://a127-hello-world.herokuapp.com/api/ui/
 
 Commands: 
 a127 project edit
